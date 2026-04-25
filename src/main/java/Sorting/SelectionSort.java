@@ -15,18 +15,23 @@ public class SelectionSort {
 
     private static void selection(int[] arr) {
 
-        for (int i = 0; i < arr.length; i++) {
-            int temp = Integer.MIN_VALUE;
-            int index = -1;
-            for (int j = 0; j < arr.length - i; j++) {
-                if(temp < arr[j]){
-                    temp = arr[j];
-                    index = j;
+        for (int i = 0; i < arr.length - 1; i++) {
+
+            int maxIndex = 0;
+
+            // find index of maximum element
+            for (int j = 1; j < arr.length - i; j++) {
+                if (arr[j] > arr[maxIndex]) {
+                    maxIndex = j;
                 }
             }
-            int x = arr[index];
-            arr[index] = arr[arr.length - 1 - i];
-            arr[arr.length - 1 - i] = x;
+
+            // swap max element with last unsorted position
+            int last = arr.length - 1 - i;
+
+            int temp = arr[maxIndex];
+            arr[maxIndex] = arr[last];
+            arr[last] = temp;
         }
     }
 }
